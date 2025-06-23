@@ -22,3 +22,6 @@ Switch1(config)# enable secret cisco
 Switch1(config)# line console 0
 Switch1(config-line)# password class
 Switch1(config-line)# login
+### Network Topology
+
+![Switch Topology](basic-switchconfiguration.png)
