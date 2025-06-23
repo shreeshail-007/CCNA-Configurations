@@ -1,0 +1,68 @@
+What You'll Need in Packet Tracer:
+8 Routers
+8-16 PCs (2 per router network or as needed)
+Switches (optional depending on PC connectivity)
+Straight-through cables (for PC to switch)
+Serial/DCE cables (for router-to-router connections)
+
+# 8 Router Static Routing Configuration
+
+This project demonstrates the configuration of static routing across 8 routers using Cisco Packet Tracer. Each router is connected to its own LAN and statically configured to reach all other networks in the topology.
+
+---
+
+## Project Files
+
+- `8-router-static.pkt` – Cisco Packet Tracer topology file
+- `static-routing-configuration.png` – Screenshot of the topology
+- This `README.md` – Detailed explanation and configuration steps
+
+---
+
+## Topology Overview
+
+- 8 Routers (R1 to R8)
+- Each router connects to:
+  - Its own LAN (1 or 2 PCs per LAN)
+  - Neighboring routers using serial connections
+- Static routes are configured to allow full end-to-end communication
+
+---
+
+## Objectives
+
+- Assign IP addresses to router interfaces and PCs
+- Enable router interfaces
+- Configure static routes between routers
+- Verify connectivity across all devices
+
+---
+
+## Testing
+
+Use the `ping` command from one PC to another in a different network to verify routing is working:
+
+```sh
+C:\> ping 192.168.X.X
+
+Configuration Steps
+
+Router> enable
+Router# configure terminal
+Router(config)# interface g0/0
+Router(config-if)# ip address 192.168.1.1 255.255.255.0
+Router(config-if)# no shutdown
+
+Set clock rate on DCE side of serial link (only needed on one side)
+Router(config)# interface s0/0/0
+Router(config-if)# clock rate 64000
+Router(config-if)# ip address 10.0.0.1 255.255.255.252
+Router(config-if)# no shutdown
+
+Configure static routing
+Router(config)# ip route [DESTINATION_NETWORK] [SUBNET_MASK] [NEXT_HOP_IP]
+
+Configure PC IPs
+IP Address: 192.168.1.10
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.1.1
